@@ -9,6 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: lightblue;
 }
 
 #formulaire {
@@ -16,7 +17,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid 2px black;
+    border: solid 2px white;
     gap: 1.5em;
     padding: 2em;
     border-radius: 20px;
@@ -25,12 +26,18 @@ body {
 label {
     font-family: "Roboto", sans-serif;
     font-weight: 600;
+    color: white;
 }
 
 input {
     padding: 0.5em;
-    border: solid 1px black;
+    border: solid 1px white;
     border-radius: 15px;
+}
+
+input[type="submit"] {
+    color: white;
+    background-color: lightcyan;
 }
 
 .wrapper {
@@ -47,6 +54,7 @@ h2 {
     text-align: center;
     word-wrap: break-word;
     width: fit-content;
+    color: white;
 }
 
 #showResult h2 {
@@ -64,6 +72,8 @@ h2 {
     border-radius: 15px;
     width: fit-content;
 }
+
+/* Insérer icone avec animation pulse */
 
 #skinnyImc h2::before,
 #bitBigImc h2::before,
@@ -128,4 +138,49 @@ h2 {
     100% {
         transform: scale(1);
     }
+}
+
+/* Indiquer la position de l'utilisateur sur le graphique */
+.graphic::before {
+    position: absolute;
+    content: "";
+    background : center / cover url(../img/arrow.png) no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+#skinnyGraphic::before {
+    top: 63%;
+    left: -6%;
+    transform: rotate(-75deg);
+}
+
+#normalGraphic::before {
+    top: 24%;
+    left: 7%;
+    transform: rotate(-45deg);
+}
+
+#bitBigGraphic::before {
+    top: 0%;
+    left: 32%;
+    transform: rotate(-16deg);
+}
+
+#bigGraphic::before {
+    top: 0%;
+    left: 61%;
+    transform: rotate(16deg);
+}
+
+#veryBigGraphic::before {
+    top: 22%;
+    left: 84%;
+    transform: rotate(45deg);
+}
+
+#deathlyBigGraphic::before {
+    top: 63%;
+    left: 104%;
+    transform: rotate(75deg);
 }

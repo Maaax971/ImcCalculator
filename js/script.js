@@ -25,7 +25,7 @@ submit.addEventListener("click", function getUserData() {
     if (!isNaN(yourImc)) {
         divFormulaire.style.display = "none";
         createDiv(yourImc);
-        addTitle(lastname, firstname, height, weight, yourImc);
+        addElements(lastname, firstname, height, weight, yourImc);
     } if (isNaN(yourImc)) {
         alert ("Veuillez remplir correctement le formulaire ! ")
         document.location.reload();
@@ -71,11 +71,21 @@ function createDiv(userImc) {
     
 }
 
-function addTitle(nom, prenom, taille, poids, imc) {
+function addElements(nom, prenom, taille, poids, imc) {
     
     const addH1 = document.createElement("h1");
     const addH2 = document.createElement("h2");
     const addP = document.createElement("p");
+    
+    // Ajout du graphique
+    
+    const addDiv = document.createElement("div");
+    const addImg = document.createElement("img");
+    addImg.src = "../img/roue-calcul-imc.png";
+    addDiv.style.position = "relative";
+    addDiv.className = "graphic";
+
+    // Ajout du bouton reset
 
     const createResetBtn = document.createElement("button");
     createResetBtn.id = "buttonReset";
@@ -93,39 +103,47 @@ function addTitle(nom, prenom, taille, poids, imc) {
             addH2.innerHTML = "Vous êtes en insuffisance pondérale";
             addH2.style.color = "orange";
             addP.innerHTML = "Les risques pour la santé liés à l'insuffisance pondérale comprennent l'ostéoporose, l'infertilité et une faiblesse au niveau du système immunitaire. L'insuffisance pondérale peut également indiquer un trouble de l'alimentation ou une autre maladie sous-jacente.";
+            addDiv.id = "skinnyGraphic";
             break;
 
         case "normalImc":
             addH2.innerHTML = "Vous êtes en super forme !";
             addH2.style.color = "green";
-            addP.innerHTML = "Vous êtes considéré comme étant en bonne « santé ». Cela peut réduire votre risque de développer des problèmes de santé liés au poids."
+            addP.innerHTML = "Vous êtes considéré comme étant en bonne « santé ». Cela peut réduire votre risque de développer des problèmes de santé liés au poids.";
+            addDiv.id = "normalGraphic";
             break;
 
         case "bitBigImc":
             addH2.innerHTML = "Vous êtes en surpoids";
             addH2.style.color = "orange";
             addP.innerHTML = "Attention à vous. Vous êtes plus à risque de développer le diabète, des maladies cardiovasculaires ainsi que certains types de cancer. Plus votre IMC est élevé, plus le risque de ces maladies chroniques augmente."
+            addDiv.id = "bitBigGraphic";
             break;
         case "bigImc":
             addH2.innerHTML = "Vous êtes dans une situation d'obésité";
             addH2.style.color = "red";
-            addP.innerHTML = "Attention à vous. Vous êtes plus à risque de développer le diabète, des maladies cardiovasculaires ainsi que certains types de cancer. Plus votre IMC est élevé, plus le risque de ces maladies chroniques augmente."
+            addP.innerHTML = "Attention à vous. Vous êtes plus à risque de développer le diabète, des maladies cardiovasculaires ainsi que certains types de cancer. Plus votre IMC est élevé, plus le risque de ces maladies chroniques augmente.";
+            addDiv.id = "bigGraphic";
             break;
 
         case "veryBigImc":
             addH2.innerHTML = "Vous êtes dans une situation de forte obésité";
             addH2.style.color = "red";
-            addP.innerHTML = "Attention à vous. Vous êtes plus à risque de développer le diabète, des maladies cardiovasculaires ainsi que certains types de cancer. Plus votre IMC est élevé, plus le risque de ces maladies chroniques augmente."
+            addP.innerHTML = "Attention à vous. Vous êtes plus à risque de développer le diabète, des maladies cardiovasculaires ainsi que certains types de cancer. Plus votre IMC est élevé, plus le risque de ces maladies chroniques augmente.";
+            addDiv.id = "veryBigGraphic";
             break;
         case "deathlyBigImc":
             addH2.innerHTML = "Vous êtes dans une situation de forte obésité morbide";
             addH2.style.color = "red";
-            addP.innerHTML = "Attention à vous. Vous êtes plus à risque de développer le diabète, des maladies cardiovasculaires ainsi que certains types de cancer. Plus votre IMC est élevé, plus le risque de ces maladies chroniques augmente."
+            addP.innerHTML = "Attention à vous. Vous êtes plus à risque de développer le diabète, des maladies cardiovasculaires ainsi que certains types de cancer. Plus votre IMC est élevé, plus le risque de ces maladies chroniques augmente.";
+            addDiv.id = "deathlyBigGraphic";
             break;
     }
 
     goodDivToCreate.append(addH2);
     goodDivToCreate.append(addP);
+    goodDivToCreate.append(addDiv);
+    addDiv.append(addImg);
 
 // Ajout d'un bouton Reset
 
@@ -133,8 +151,6 @@ function addTitle(nom, prenom, taille, poids, imc) {
     buttonReset = document.querySelector("#buttonReset");
     console.log(buttonReset);
     buttonReset.addEventListener("click", e => {
-        
-        console.log("Le click fonctionne");
         document.location.reload();
     })
 }
